@@ -1,0 +1,15 @@
+{
+  "ignore": [
+    "README.md",
+    "box-img-lg.png",
+    "box-img-readme.jpg",
+    "box-img-sm.png"
+  ],
+  "commands": {
+    "Compile contracts": "yarn workspace truffle run compile",
+    "Migrate contracts": "yarn workspace truffle run migrate",
+    "Test contracts": "yarn workspace truffle run test",
+    "Start": "yarn start"
+  },
+  "hooks": {}
+}
