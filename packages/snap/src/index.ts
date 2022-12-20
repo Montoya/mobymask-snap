@@ -18,15 +18,6 @@ export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
 };
 
 /**
- * Get a message from the origin. For demonstration purposes only.
- *
- * @param originString - The origin string.
- * @returns A message based on the origin.
- */
-export const getMessage = (originString: string): string =>
-  `Hello, ${originString}!`;
-
-/**
  * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
  *
  * @param args - The request handler args as object.
@@ -44,11 +35,11 @@ export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
         method: 'snap_confirm',
         params: [
           {
-            prompt: getMessage(origin),
+            prompt: 'Hello there!',
             description:
-              'This custom confirmation is just for display purposes.',
+              'Thank you for installing the MobyMask MVP snap.',
             textAreaContent:
-              'But you can edit the snap source code to make it do something, if you want to!',
+              'This snap will help you identify contracts that have been reported for phishing in the MobyMask Phisher Registry.',
           },
         ],
       });
