@@ -1,14 +1,5 @@
-# TypeScript Example Snap
+# MobyMask MVP Snap
 
-This Snap demonstrates how to develop a Snap with TypeScript.
+A snap that warns you when interacting with a contract that has been identified as a phisher in the MobyMask Phisher Registry.
 
-## Notes
-
-- Babel is used for transpiling TypeScript to JavaScript, so when building with the CLI,
-  `transpilationMode` must be set to `localOnly` (default) or `localAndDeps`.
-- For the global `wallet` type to work, you have to add the following to your `tsconfig.json`:
-  ```json
-  {
-    "files": ["./node_modules/@metamask/snap-types/global.d.ts"]
-  }
-  ```
+The snap can be installed from the dapp here: [montoya.github.io/get-mobymask-snap/](https://montoya.github.io/get-mobymask-snap/). 

@@ -28,16 +28,15 @@ export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
  * @throws If the request method is not valid for this snap.
  * @throws If the `snap_confirm` call failed.
  */
-export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
-  switch (request.method) {
+export const onRpcRequest: OnRpcRequestHandler = (args) => {
+  switch (args.request.method) {
     case 'hello':
       return wallet.request({
         method: 'snap_confirm',
         params: [
           {
             prompt: 'Hello there!',
-            description:
-              'Thank you for installing the MobyMask MVP snap.',
+            description: 'Thank you for installing the MobyMask MVP snap.',
             textAreaContent:
               'This snap will help you identify contracts that have been reported for phishing in the MobyMask Phisher Registry.',
           },

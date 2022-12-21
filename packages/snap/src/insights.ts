@@ -1428,7 +1428,8 @@ export async function getInsights(transaction: Record<string, unknown>) {
     if (transaction.to === mobyMaskAddress.toLowerCase()) {
       // User is interacting with MobyMask contract
 
-      returnObject.Hello = '🐋 You are interacting with the MobyMask Phisher Registry.'; 
+      returnObject.Hello =
+        '🐋 You are interacting with the MobyMask Phisher Registry.';
 
       const transactionData = remove0x(transaction.data);
 
@@ -1451,40 +1452,41 @@ export async function getInsights(transaction: Record<string, unknown>) {
           ethersReadResult = await mobyMaskContract.isPhisher(
             decodedParameters[0],
           );
-          
-          if (decodedParameters[1]) { 
+
+          if (decodedParameters[1]) {
             if (ethersReadResult) {
-              returnObject.Notice = '✅ This phisher has already been reported.';
-            } else { 
-              returnObject.Notice = '💡 You are reporting a phisher. Thank you for helping to keep the web safe!'; 
+              returnObject.Notice =
+                '✅ This phisher has already been reported.';
+            } else {
+              returnObject.Notice =
+                '💡 You are reporting a phisher. Thank you for helping to keep the web safe!';
             }
-          } else { 
-            if (ethersReadResult) { 
-              returnObject.Notice = '💡 You are revoking phisher status.';
-            } else { 
-              returnObject.Notice = '🤔 This has not been reported in the registry or is already revoked.';
-            }
+          } else if (ethersReadResult) {
+            returnObject.Notice = '💡 You are revoking phisher status.';
+          } else {
+            returnObject.Notice =
+              '🤔 This has not been reported in the registry or is already revoked.';
           }
         } else {
           ethersReadResult = await mobyMaskContract.isMember(
             decodedParameters[0],
           );
-          
-          if (decodedParameters[1]) { 
+
+          if (decodedParameters[1]) {
             if (ethersReadResult) {
               returnObject.Notice = '✅ This user is already a member.';
-            } else { 
-              returnObject.Notice = '🤝 You are inviting a new member to help keep the web safe.'; 
+            } else {
+              returnObject.Notice =
+                '🤝 You are inviting a new member to help keep the web safe.';
             }
-          } else { 
-            if (ethersReadResult) {
-              returnObject.Notice = '💡 You are revoking member status.';
-            } else { 
-              returnObject.Notice = '🤔 This user is not a member or their status has already been revoked.'; 
-            }
+          } else if (ethersReadResult) {
+            returnObject.Notice = '💡 You are revoking member status.';
+          } else {
+            returnObject.Notice =
+              '🤔 This user is not a member or their status has already been revoked.';
           }
         }
-      } 
+      }
     } else {
       // Check if the user is interacting with a phisher
       ethersReadResult = await mobyMaskContract.isPhisher(
@@ -1492,9 +1494,11 @@ export async function getInsights(transaction: Record<string, unknown>) {
       );
 
       if (ethersReadResult) {
-        returnObject.Beware = '😱 This address has been reported for phishing in the MobyMask Phisher Registry. You should not interact with this address.';
-      } else { 
-        returnObject.Notice = '🤔 This address has not been reported in the MobyMask Phisher Registry. This does not guarantee that it is safe to interact with. Proceed with care.'; 
+        returnObject.Beware =
+          '😱 This address has been reported for phishing in the MobyMask Phisher Registry. You should not interact with this address.';
+      } else {
+        returnObject.Notice =
+          '🤔 This address has not been reported in the MobyMask Phisher Registry. This does not guarantee that it is safe to interact with. Proceed with care.';
       }
     }
 
