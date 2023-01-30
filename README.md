@@ -170,4 +170,12 @@ Finally, this checks to see if the user is interacting with the MobyMask contrac
 
 Recall that an ethers contract interface already exists in the constant `mobyMaskContract`. To check if the address is a phisher, the snap just needs to call the contract function `isPhisher` with the `to` address. The result of this check is a boolean. If the result evaluates to `true`, then the address has been reported as a phisher in the registry. If it is `false`, then the address has not been reported. It may or may not be a phisher! Therefore, a message is given in each case. 
 
-This is the end of the code, and the return object is returned. The content appears in the transaction insights tab for any send or contract interaction. 
+You can test this `isPhisher` contract function on Etherscan [here](https://etherscan.io/address/0xb06e6db9288324738f04fcaac910f5a60102c1f8#readContract#F22), to confirm that you get the same result as in the snap. If you give it a contract address like `0x408cfd714c3bca3859650f6d85bac1500620961e` (this is a known phishing contract), then you will get back `true`. _Note that Ethereum addresses are prefixed with `eip155:1:`._
+
+<img src="etherscan_example.png" width="620" height="380" alt="Example screenshot from Etherscan showing the output of the isPhisher function" />
+
+This is the end of the code, and the return object is returned. The content appears in the transaction insights tab for any send or contract interaction, like so: 
+
+<img src="mobymask_example.png" width="340" height="310" alt="Example transaction insights display in MetaMask transaction UI" />
+
+I hope this explainer has been helpful. Feel free to use this code in your own snap projects!
