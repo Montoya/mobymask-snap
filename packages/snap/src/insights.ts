@@ -12,7 +12,7 @@ import { ethers } from 'ethers';
 export async function getInsights(transaction: Record<string, unknown>) {
   const mobyMaskAddress = '0xB06E6DB9288324738f04fCAAc910f5A60102C1F8';
 
-  const hexChainId = await wallet.request({ method: 'eth_chainId' });
+  const hexChainId = await ethereum.request({ method: 'eth_chainId' });
   const chainId = parseInt(`${hexChainId}`, 16);
 
   const returnObject: Record<string, any> = {};
@@ -61,7 +61,7 @@ export async function getInsights(transaction: Record<string, unknown>) {
       },
     ];
 
-    const provider = new ethers.providers.Web3Provider(wallet);
+    const provider = new ethers.providers.Web3Provider(ethereum);
 
     const mobyMaskContract = new ethers.Contract(
       mobyMaskAddress,

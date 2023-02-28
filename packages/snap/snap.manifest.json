@@ -1,5 +1,5 @@
 {
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "A snap that warns you when interacting with a contract that has been identified as a phisher in the MobyMask Phisher Registry.",
   "proposedName": "MobyMask MVP",
   "repository": {
@@ -19,6 +19,7 @@
   },
   "initialPermissions": {
     "snap_confirm": {},
+    "endowment:ethereum-provider": {},
     "endowment:transaction-insight": {}
   },
   "manifestVersion": "0.1"
