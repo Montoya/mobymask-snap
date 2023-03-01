@@ -23,16 +23,13 @@ export const connectSnap = async (
   params: Record<'version' | string, unknown> = {},
 ) => {
   await window.ethereum.request({
-    method: 'wallet_enable',
-    params: [
+    method: 'wallet_requestSnaps',
+    params: 
       {
-        wallet_snap: {
-          [snapId]: {
+        [snapId]: {
             ...params,
           },
-        },
       },
-    ],
   });
 };
 

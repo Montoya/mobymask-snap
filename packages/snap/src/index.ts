@@ -2,6 +2,7 @@ import {
   OnTransactionHandler,
   OnRpcRequestHandler,
 } from '@metamask/snap-types';
+import { heading, panel, text } from '@metamask/snaps-ui';
 import { getInsights } from './insights';
 
 /**
@@ -12,8 +13,16 @@ import { getInsights } from './insights';
  * @returns The transaction insights.
  */
 export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
+  const insights = await getInsights(transaction); 
+  const titles = Object.keys(insights); 
+  let arr = []; 
+  for(var i=0;i<titles.length;i++) { 
+    arr.push(heading(titles[i])); 
+    arr.push(text(insights[titles[i]])); 
+  }
+
   return {
-    insights: await getInsights(transaction),
+    content: panel(arr)
   };
 };
 

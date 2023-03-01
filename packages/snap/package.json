@@ -1,6 +1,6 @@
 {
   "name": "mobymask-snap-mvp",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A snap that warns you when interacting with a contract that has been identified as a phisher in the MobyMask Phisher Registry.",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@metamask/abi-utils": "^1.1.0",
+    "@metamask/snaps-ui": "^0.30.0",
     "@metamask/utils": "^3.3.1",
     "ethers": "^5.7.2"
   },
