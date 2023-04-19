@@ -1,24 +1,23 @@
 {
-  "version": "0.9.4",
-  "description": "A snap that warns you when interacting with a contract that has been identified as a phisher in the MobyMask Phisher Registry.",
-  "proposedName": "MobyMask MVP",
+  "version": "0.9.5",
+  "description": "A snap that warns you when interacting with an address that has been identified as a phisher in the MobyMask Phisher Registry.",
+  "proposedName": "MobyMask Phishing Warning",
   "repository": {
     "type": "git",
     "url": "https://github.com/Montoya/mobymask-snap.git"
   },
   "source": {
-    "shasum": "ufXFBPCTmLFpHhRMujshEr0xhvlARSBpyNB8hB3O3os=",
+    "shasum": "9vVukwtdXg4gPvBEy3FqTNWHirWyP7sGpRC6mQWBqvg=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "images/icon.svg",
-        "packageName": "mobymask-snap-mvp",
+        "packageName": "mobymask-snap",
         "registry": "https://registry.npmjs.org/"
       }
     }
   },
   "initialPermissions": {
-    "snap_confirm": {},
     "endowment:ethereum-provider": {},
     "endowment:transaction-insight": {}
   },
