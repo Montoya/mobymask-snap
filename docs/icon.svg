@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 360.00002 360.00001"
+   version="1.1"
+   id="svg93"
+   sodipodi:docname="mobymask.svg"
+   width="360"
+   height="360"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview95"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="180"
+     inkscape:cy="144"
+     inkscape:window-width="1390"
+     inkscape:window-height="948"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg93" />
+  <defs
+     id="defs80">
+    <style
+       id="style78">.cls-1{fill:#fff;stroke:#231f20;stroke-miterlimit:10;stroke-width:8px;}.cls-2{fill:#231f20;}</style>
+  </defs>
+  <g
+     id="Layer_2"
+     data-name="Layer 2"
+     transform="translate(9.436218,34.877635)">
+    <g
+       id="Layer_3"
+       data-name="Layer 3">
+      <path
+         class="cls-1"
+         d="m 119.21,242.47 c 0,0 -92.33,10.46 -104.48,-7.18 C 7.2,224.36 72.9,224.18 72.9,224.18"
+         id="path82"
+         style="fill:#ffffff;stroke:#231f20;stroke-width:8px;stroke-miterlimit:10" />
+    </g>
+    <g
+       id="Layer_2-2"
+       data-name="Layer 2">
+      <path
+         class="cls-1"
+         d="M 51.72,138.1 C 39,129.87 11,138.13 6.58,158 2.16,177.87 -2.32,198.52 45.87,232.2 94.06,265.88 193,291.56 261.53,231.1 329.28,171.31 289.4,93.21 293.92,71.77 298.44,50.33 336,17.2 337.08,8 c 1.08,-9.2 -22.14,-0.13 -28.82,4.07 -6.68,4.2 -33.53,24.36 -33.53,24.36 0,0 -22.64,-8.84 -34,-1.25 -11.36,7.59 -18.93,10.51 -20.36,14.82 -1.43,4.31 41.19,17.41 43,34.23 1.81,16.82 2,55 -43.06,83.71 C 137.62,220.63 74,152.53 51.72,138.1 Z"
+         id="path85"
+         style="fill:#ffffff;stroke:#231f20;stroke-width:8px;stroke-miterlimit:10" />
+      <path
+         class="cls-1"
+         d="m 150.82,248.41 c 11.55,5.77 43.55,39.35 57.19,37.77 13.64,-1.58 16.79,-29.38 5.25,-37.77 -11.54,-8.39 -16.79,-13.12 -16.79,-13.12"
+         id="path87"
+         style="fill:#ffffff;stroke:#231f20;stroke-width:8px;stroke-miterlimit:10" />
+      <path
+         class="cls-2"
+         d="m 89.84,176.77 c 0,0 -3.76,3.95 0.76,5.46 4.52,1.51 5.46,-2.08 5.46,-2.08 a 3.85,3.85 0 0 1 -4.52,0.38 3.29,3.29 0 0 1 -1.7,-3.76 z"
+         id="path89"
+         style="fill:#231f20" />
+    </g>
+  </g>
+</svg>

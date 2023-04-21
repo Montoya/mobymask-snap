@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Get the MobyMask Phishing Warning snap</title>
+    <link rel="icon" type="image/svg" href="./icon.svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <style type="text/css">
+
+body {
+  margin:0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1 {
+  font-weight:800;
+  font-size:48px;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+p {
+  font-size:18px;
+  color:#333333;
+}
+a.btn { 
+  color:#fff; 
+  display:inline-block; 
+  background-color:rgb(84,58,183); 
+  background: linear-gradient(0deg, rgb(66, 58, 183) 0%, rgb(0, 129, 193) 100%);
+  padding:12px; 
+  border-radius:6px; 
+  text-decoration:none;
+}
+
+.header {
+  position:relative;
+  text-align:center;
+  background: linear-gradient(60deg, rgb(58, 73, 183) 0%, rgb(0, 148, 193) 100%);
+  color:white;
+}
+.logo {
+  width:64px;
+  padding-right:15px;
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height:40vh;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: #fff;
+  padding-top:32px; 
+}
+.content p { 
+  max-width:768px; 
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 14;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Based on https://codepen.io/goodkatz/pen/LYPGxQz?editors=1100 by Goodkatz -->  
+
+    <div class="header">
+
+      <!--Content before waves-->
+      <div class="inner-header flex">
+      <!--Just the logo.. Don't mind this-->
+      <img class="logo" src="https://mobymask.com/static/media/logo.06de13212d41ee95b2a464381fd77f3f.svg">
+      <h1>MobyMask MVP Snap</h1>
+      </div>
+      
+      <!--Waves Container-->
+      <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+      </svg>
+      </div>
+      <!--Waves end-->
+    
+    </div>
+    <!--Header ends-->
+    
+    <!--Content starts-->
+    <div class="content flex">
+      <div id="installFlask" style="display:none">
+        <p>Snaps is pre-release software only available in MetaMask Flask, a canary distribution for developers with access to upcoming features.</p>
+        <a href="https://metamask.io/flask/" id="installFlaskButton" class="btn">
+          Install MetaMask Flask
+        </a>
+      </div>
+      <div id="installMobyMaskSnap">
+        <a href="#" id="installMobyMaskSnapButton" class="btn">
+          Connect and install MobyMask snap
+        </a>
+      </div>
+      <div id="snapInstalled" style="display:none">
+        <p>MobyMask snap installed! You will now see insights from this snap when interacting with addresses on Ethereum mainnet.</p>
+      </div>
+    </div>
+    <!--Content ends-->
+
+    <script type="text/javascript">
+const isFlask = async () => {
+  const provider = window.ethereum;
+
+  try {
+    const clientVersion = await provider?.request({
+      method: 'web3_clientVersion',
+    });
+
+    const isFlaskDetected = (clientVersion)?.includes('flask');
+
+    return provider && isFlaskDetected;
+  } catch {
+    return false;
+  }
+}; 
+
+const getSnap = async () => {
+  try {
+    const snaps = await window.ethereum.request({
+      method: 'wallet_getSnaps',
+    }); 
+
+    return Object.values(snaps).find(
+      (snap) =>
+        snap.id === 'npm:mobymask-snap'
+    );
+  } catch (e) {
+    console.log('Failed to obtain installed snap', e);
+    return undefined;
+  }
+};
+
+const connectSnap = async (event) => {
+  event.preventDefault(); 
+  const provider = window.ethereum; 
+
+  try { 
+    await provider?.request({
+      method: 'wallet_requestSnaps', 
+      params: 
+        {
+          ['npm:mobymask-snap']: { }
+        },
+    }); 
+
+    const installedSnap = await getSnap();
+
+    if(installedSnap) { 
+      document.getElementById('installMobyMaskSnap').style.display = 'none'; 
+      document.getElementById('snapInstalled').style.display = 'block'; 
+    }
+  } catch { 
+
+  }
+  return false; 
+}; 
+
+window.onload = async (event) => {
+  const isFlaskDetected = await isFlask(); 
+  if(!isFlaskDetected) {
+    document.getElementById('installFlask').style.display = 'block'; 
+    document.getElementById('installMobyMaskSnap').style.display = 'none'; 
+    return; 
+  }
+
+  document.getElementById('installMobyMaskSnapButton').addEventListener('click', connectSnap); 
+}; 
+    </script>
+  </body>
+</html>
