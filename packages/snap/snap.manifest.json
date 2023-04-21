@@ -1,5 +1,5 @@
 {
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "A snap that warns you when interacting with an address that has been identified as a phisher in the MobyMask Phisher Registry.",
   "proposedName": "MobyMask Phishing Warning",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/Montoya/mobymask-snap.git"
   },
   "source": {
-    "shasum": "9vVukwtdXg4gPvBEy3FqTNWHirWyP7sGpRC6mQWBqvg=",
+    "shasum": "5kc/FUBJAEcZwFu0+y4p9H8fD0ZXokJ/JAS0STIPREA=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
