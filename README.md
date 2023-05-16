@@ -1,10 +1,10 @@
-# MobyMask MVP Snap
+# MobyMask Phishing Warning snap (formerly MobyMask MVP Snap)
 
-A snap that warns you when interacting with a contract that has been identified as a phisher in the MobyMask Phisher Registry.
+This is the repository for the MobyMask Phishing Warning snap. This snap warns you when interacting with a contract that has been identified as a phisher in the [MobyMask Phisher Registry](https://etherscan.io/address/0xb06e6db9288324738f04fcaac910f5a60102c1f8). You can learn more about MobyMask [here](https://mobymask.com/).
 
-The snap can be installed from the dapp here: [montoya.github.io/get-mobymask-snap/](https://montoya.github.io/get-mobymask-snap/).
+The snap can be installed from the dapp here: [montoya.github.io/mobymask-snap/](https://montoya.github.io/mobymask-snap/). You must have MetaMask Flask installed. It will eventually be available in the MetaMask extension. 
 
-Built for the MetaMask 2022 holiday hackathon by Christian Montoya with help from Dan Finlay and moral support from Barbara Schorchit.
+This snap has been audited by ConsenSys Diligence, you can find the audit here: https://consensys.net/diligence/audits/private/94adin7s2ifios/
 
 ## How it works
 
@@ -15,7 +15,7 @@ The following is an explanation of the MobyMask snap code. It will help you lear
 This project is based on the [template-snap-monorepo](https://github.com/MetaMask/template-snap-monorepo), with the following changes made: 
 
 - The `description`, `proposedName`, and `repository` sections are modified 
-- Under `initialPermissions`, `"endowment:transaction-insight": {}` has been added to support transaction insights
+- Under `initialPermissions`, `"endowment:ethereum-provider": {}` and `"endowment:transaction-insight": {}` have been added to support reading from the Ethereum blockchain and showing transaction insights
 
 ### Installing additional dependencies 
 
@@ -30,6 +30,7 @@ import {
   OnTransactionHandler,
   OnRpcRequestHandler,
 } from '@metamask/snap-types';
+import { heading, panel, text } from '@metamask/snaps-ui';
 import { getInsights } from './insights';
 
 /**
@@ -40,8 +41,16 @@ import { getInsights } from './insights';
  * @returns The transaction insights.
  */
 export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
+  const insights = await getInsights(transaction); 
+  const titles = Object.keys(insights); 
+  let arr = []; 
+  for(var i=0;i<titles.length;i++) { 
+    arr.push(heading(titles[i])); 
+    arr.push(text(insights[titles[i]])); 
+  }
+
   return {
-    insights: await getInsights(transaction),
+    content: panel(arr)
   };
 };
 
@@ -59,16 +68,16 @@ export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
 export const onRpcRequest: OnRpcRequestHandler = (args) => {
   switch (args.request.method) {
     case 'hello':
-      return wallet.request({
-        method: 'snap_confirm',
-        params: [
-          {
-            prompt: 'Hello there!',
-            description: 'Thank you for installing the MobyMask MVP snap.',
-            textAreaContent:
-              'This snap will help you identify contracts that have been reported for phishing in the MobyMask Phisher Registry.',
-          },
-        ],
+      return snap.request({
+        method: 'snap_dialog',
+        params: {
+          type: 'alert',  
+          content: panel([
+            heading('Hello there!'),
+            text('Thank you for installing the MobyMask MVP snap.'), 
+            text('This snap will help you identify contracts that have been reported for phishing in the MobyMask Phisher Registry.'),
+          ]), 
+        },
       });
     default:
       throw new Error('Method not found.');
@@ -102,7 +111,7 @@ This imports the relevant functions from the packages added earlier and creates 
 ```TypeScript
   const mobyMaskAddress = '0xB06E6DB9288324738f04fCAAc910f5A60102C1F8';
 
-  const hexChainId = await wallet.request({ method: 'eth_chainId' });
+  const hexChainId = await ethereum.request({ method: 'eth_chainId' });
   const chainId = parseInt(`${hexChainId}`, 16);
 
   const returnObject: Record<string, any> = {};
@@ -117,14 +126,14 @@ This imports the relevant functions from the packages added earlier and creates 
 
 First, this starts with a constant for the address of the [MobyMask Phisher Registry contract](https://etherscan.io/address/0xb06e6db9288324738f04fcaac910f5a60102c1f8). This will be used in multiple ways later in the code. 
 
-Then, it checks if the user is on Ethereum mainnet by calling `wallet.request()`, and sets up the return object which holds the information that will be displayed to the user. 
+Then, it checks if the user is on Ethereum mainnet by calling `ethereum.request()`, and sets up the return object which holds the information that will be displayed to the user. 
 
 Finally it checks if the chainId is not 1. In this case, it sets a message in the return object and throws an error that causes the rest of the code to be skipped. 
 
 ```TypeScript
     const mobyMaskABI = [...]; 
 
-    const provider = new ethers.providers.Web3Provider(wallet);
+    const provider = new ethers.providers.Web3Provider(ethereum);
 
     const mobyMaskContract = new ethers.Contract(
       mobyMaskAddress,
@@ -133,7 +142,7 @@ Finally it checks if the chainId is not 1. In this case, it sets a message in th
     );
 ```
 
-The address and ABI of the MobyMask contract is used to create a contract interface with ethers. This is similar to how it would be used in a dapp, but instead of passing `window.ethereum` as the provider, it passes `wallet` which is the equivalent in a snap. This will be used to read data from the MobyMask contract on-chain. 
+The address and ABI of the MobyMask contract is used to create a contract interface with ethers. This is similar to how it would be used in a dapp, but instead of passing `window.ethereum` as the provider, it passes `ethereum` which is the equivalent in a snap. This will be used to read data from the MobyMask contract on-chain. 
 
 ```TypeScript
 let ethersReadResult = false;
