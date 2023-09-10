@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Get the MobyMask Phishing Warning snap</title>
+    <title>MobyMask Snap for MetaMask</title>
     <link rel="icon" type="image/svg" href="./icon.svg"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -265,14 +265,19 @@ window.onload = async (event) => {
 
   const provider = await getProvider(); 
 
-  const result = await provider.request({ 
-    method: 'wallet_getSnaps', 
-  }); 
+  try { 
+    const result = await provider.request({ 
+      method: 'wallet_getSnaps', 
+    }); 
 
-  if(result) { 
-    document.getElementById('installMobyMaskSnapButton').addEventListener('click', connectSnap); 
+    if(result) { 
+      document.getElementById('installMobyMaskSnapButton').addEventListener('click', connectSnap); 
+    }
+    else { 
+      throw "Method not found"; 
+    }
   }
-  else { 
+  catch (err) { 
     document.getElementById('installMetaMask').style.display = 'block'; 
     document.getElementById('installMobyMaskSnap').style.display = 'none'; 
   }
