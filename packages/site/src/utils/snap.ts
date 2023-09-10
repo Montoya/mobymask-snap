@@ -24,12 +24,11 @@ export const connectSnap = async (
 ) => {
   await window.ethereum.request({
     method: 'wallet_requestSnaps',
-    params: 
-      {
-        [snapId]: {
-            ...params,
-          },
+    params: {
+      [snapId]: {
+        ...params,
       },
+    },
   });
 };
 

@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
  * @returns The transaction insights.
  */
 export async function getInsights(transaction: Record<string, unknown>) {
-  const mobyMaskAddress = '0xB06E6DB9288324738f04fCAAc910f5A60102C1F8';
+  const mobyMaskAddress = '0xD07Ed0eB708Cb7A660D22f2Ddf7b8C19c7bf1F69';
 
   const hexChainId = await ethereum.request({ method: 'eth_chainId' });
   const chainId = parseInt(`${hexChainId}`, 16);

@@ -1,7 +1,7 @@
 {
   "name": "mobymask-snap",
-  "version": "0.9.7",
-  "description": "A snap that warns you when interacting with an address that has been identified as a phisher in the MobyMask Phisher Registry.",
+  "version": "1.0.0",
+  "description": "A MetaMask Snap that warns you when interacting with an address that has been identified as a phisher in the MobyMask Phisher Registry.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Montoya/mobymask-snap.git"
